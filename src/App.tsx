@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type FormEvent } from 'react';
 import {
   ArrowRight, Code2, Layers, Zap, Globe2, Shield, BarChart3,
   ChevronRight, Mail, MessageCircle, ExternalLink, Sparkles,
-  Building2, Wrench, Package, CheckCircle2, Menu, X
+  Building2, Wrench, Package, CheckCircle2, Menu, X, Send, Loader2
 } from 'lucide-react';
 
 /* ─── Intersection Observer hook ─────────────────────────────── */
@@ -432,60 +432,171 @@ function ReasonCard({ r, delay }: { r: typeof reasons[0]; delay: number }) {
 }
 
 /* ─── Contact ─────────────────────────────────────────────────── */
+type FormState = 'idle' | 'sending' | 'success' | 'error';
+
 function Contact() {
   const { ref, inView } = useInView();
+  const [state, setState] = useState<FormState>('idle');
+  const [form, setForm] = useState({ name: '', company: '', email: '', phone: '', message: '' });
+
+  function onChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  }
+
+  async function onSubmit(e: FormEvent) {
+    e.preventDefault();
+    setState('sending');
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) throw new Error();
+      setState('success');
+    } catch {
+      setState('error');
+    }
+  }
+
   return (
     <section id="contacto" className="py-32 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-violet-950/30 to-transparent pointer-events-none" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-violet-800/15 blur-[100px] pointer-events-none" />
 
-      <div className="max-w-3xl mx-auto px-6 text-center relative z-10">
-        <div
-          ref={ref}
-          className={`transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-        >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs font-semibold text-violet-300 mb-8">
-            <Mail size={11} /> Contacto
-          </div>
-          <h2 className="text-4xl md:text-6xl font-black text-white mb-6">
-            ¿Listo para dar el<br />
-            <span className="gradient-text">siguiente paso?</span>
-          </h2>
-          <p className="text-white/50 text-lg mb-12 max-w-xl mx-auto">
-            Agenda un diagnóstico gratuito. Analizamos tu operación y te mostramos exactamente cómo Odoo puede transformarla.
-          </p>
+      <div className="max-w-5xl mx-auto px-6 relative z-10">
+        <div ref={ref} className={`transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="mailto:ventas@inflexiumlabs.com"
-              className="group flex items-center justify-center gap-3 px-7 py-4 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-semibold text-sm transition-all hover:scale-105 glow-violet"
-            >
-              <Mail size={16} />
-              ventas@inflexiumlabs.com
-            </a>
-            <a
-              href="https://wa.me/59897574400?text=Hola%2C%20quiero%20solicitar%20un%20diagn%C3%B3stico%20gratuito"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-3 px-7 py-4 rounded-xl glass text-white/70 hover:text-white font-semibold text-sm transition-all hover:scale-105"
-            >
-              <MessageCircle size={16} />
-              +598 97 574 400
-            </a>
+          <div className="text-center mb-14">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs font-semibold text-violet-300 mb-6">
+              <Mail size={11} /> Contacto
+            </div>
+            <h2 className="text-4xl md:text-6xl font-black text-white mb-4">
+              ¿Listo para dar el<br />
+              <span className="gradient-text">siguiente paso?</span>
+            </h2>
+            <p className="text-white/50 text-lg max-w-xl mx-auto">
+              Contanos sobre tu empresa y te respondemos en menos de 24 horas.
+            </p>
           </div>
 
-          <div className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-3">
-            {[
-              'Diagnóstico sin costo',
-              'Respuesta en 24h',
-              'Sin contratos largos',
-              'Soporte en español',
-            ].map(f => (
-              <div key={f} className="glass rounded-xl py-3 px-4 text-xs text-white/50 font-medium">
-                <CheckCircle2 size={12} className="text-violet-400 mx-auto mb-1" />
-                {f}
+          <div className="grid lg:grid-cols-5 gap-8 items-start">
+            {/* Form */}
+            <div className="lg:col-span-3 glass rounded-3xl p-8 border border-white/[0.08]">
+              {state === 'success' ? (
+                <div className="text-center py-12 space-y-4">
+                  <div className="w-16 h-16 rounded-full bg-violet-500/20 flex items-center justify-center mx-auto">
+                    <CheckCircle2 size={32} className="text-violet-400" />
+                  </div>
+                  <h3 className="text-white font-black text-2xl">¡Consulta enviada!</h3>
+                  <p className="text-white/50">Te enviamos una confirmación a <span className="text-violet-300 font-semibold">{form.email}</span>.<br />Nuestro equipo te contacta pronto.</p>
+                  <button onClick={() => { setState('idle'); setForm({ name: '', company: '', email: '', phone: '', message: '' }); }} className="mt-4 px-6 py-2.5 rounded-xl glass text-sm text-white/60 hover:text-white transition-colors">
+                    Enviar otra consulta
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={onSubmit} className="space-y-4">
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-semibold text-white/50 mb-2 uppercase tracking-wider">Nombre *</label>
+                      <input
+                        name="name" required value={form.name} onChange={onChange}
+                        placeholder="Tu nombre"
+                        className="w-full bg-white/[0.05] border border-white/[0.1] rounded-xl px-4 py-3 text-white placeholder-white/25 text-sm focus:outline-none focus:border-violet-500/60 transition-colors"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold text-white/50 mb-2 uppercase tracking-wider">Empresa *</label>
+                      <input
+                        name="company" required value={form.company} onChange={onChange}
+                        placeholder="Tu empresa"
+                        className="w-full bg-white/[0.05] border border-white/[0.1] rounded-xl px-4 py-3 text-white placeholder-white/25 text-sm focus:outline-none focus:border-violet-500/60 transition-colors"
+                      />
+                    </div>
+                  </div>
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-semibold text-white/50 mb-2 uppercase tracking-wider">Email *</label>
+                      <input
+                        name="email" type="email" required value={form.email} onChange={onChange}
+                        placeholder="tu@empresa.com"
+                        className="w-full bg-white/[0.05] border border-white/[0.1] rounded-xl px-4 py-3 text-white placeholder-white/25 text-sm focus:outline-none focus:border-violet-500/60 transition-colors"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-semibold text-white/50 mb-2 uppercase tracking-wider">Teléfono</label>
+                      <input
+                        name="phone" value={form.phone} onChange={onChange}
+                        placeholder="+598 ..."
+                        className="w-full bg-white/[0.05] border border-white/[0.1] rounded-xl px-4 py-3 text-white placeholder-white/25 text-sm focus:outline-none focus:border-violet-500/60 transition-colors"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold text-white/50 mb-2 uppercase tracking-wider">¿En qué podemos ayudarte?</label>
+                    <textarea
+                      name="message" value={form.message} onChange={onChange} rows={4}
+                      placeholder="Contanos sobre tu empresa, qué procesos querés mejorar..."
+                      className="w-full bg-white/[0.05] border border-white/[0.1] rounded-xl px-4 py-3 text-white placeholder-white/25 text-sm focus:outline-none focus:border-violet-500/60 transition-colors resize-none"
+                    />
+                  </div>
+                  {state === 'error' && (
+                    <p className="text-red-400 text-sm">Error al enviar. Intentá de nuevo o escribinos directamente.</p>
+                  )}
+                  <button
+                    type="submit"
+                    disabled={state === 'sending'}
+                    className="w-full flex items-center justify-center gap-2 py-4 rounded-xl bg-violet-600 hover:bg-violet-500 disabled:opacity-60 text-white font-semibold text-sm transition-all hover:scale-[1.02] glow-violet"
+                  >
+                    {state === 'sending' ? <><Loader2 size={16} className="animate-spin" /> Enviando...</> : <><Send size={16} /> Enviar consulta</>}
+                  </button>
+                </form>
+              )}
+            </div>
+
+            {/* Sidebar info */}
+            <div className="lg:col-span-2 space-y-4">
+              <div className="glass rounded-2xl p-6 border border-white/[0.06]">
+                <div className="text-xs font-semibold text-white/40 uppercase tracking-wider mb-1">Respuesta garantizada</div>
+                <div className="text-white font-bold text-lg">Menos de 24 horas</div>
+                <div className="text-white/40 text-sm mt-1">En días hábiles</div>
               </div>
-            ))}
+              <a
+                href="https://wa.me/59897574400?text=Hola%2C%20quiero%20solicitar%20un%20diagn%C3%B3stico%20gratuito"
+                target="_blank" rel="noopener noreferrer"
+                className="flex items-center gap-4 glass rounded-2xl p-5 border border-white/[0.06] glass-hover group"
+              >
+                <div className="w-10 h-10 rounded-xl bg-green-500/15 flex items-center justify-center text-green-400 flex-shrink-0 group-hover:scale-110 transition-transform">
+                  <MessageCircle size={18} />
+                </div>
+                <div>
+                  <div className="text-white font-semibold text-sm">WhatsApp</div>
+                  <div className="text-white/40 text-xs">+598 97 574 400</div>
+                </div>
+                <ArrowRight size={14} className="ml-auto text-white/30 group-hover:text-white/60 group-hover:translate-x-1 transition-all" />
+              </a>
+              <a
+                href="mailto:ventas@inflexiumlabs.com"
+                className="flex items-center gap-4 glass rounded-2xl p-5 border border-white/[0.06] glass-hover group"
+              >
+                <div className="w-10 h-10 rounded-xl bg-violet-500/15 flex items-center justify-center text-violet-400 flex-shrink-0 group-hover:scale-110 transition-transform">
+                  <Mail size={18} />
+                </div>
+                <div>
+                  <div className="text-white font-semibold text-sm">Email directo</div>
+                  <div className="text-white/40 text-xs">ventas@inflexiumlabs.com</div>
+                </div>
+                <ArrowRight size={14} className="ml-auto text-white/30 group-hover:text-white/60 group-hover:translate-x-1 transition-all" />
+              </a>
+              <div className="grid grid-cols-2 gap-3">
+                {['Diagnóstico gratis', 'Sin contratos largos', 'Soporte en español', 'UY & MX'].map(f => (
+                  <div key={f} className="glass rounded-xl p-3 text-center">
+                    <CheckCircle2 size={12} className="text-violet-400 mx-auto mb-1.5" />
+                    <div className="text-white/50 text-xs font-medium">{f}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>

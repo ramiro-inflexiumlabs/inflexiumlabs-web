@@ -4,6 +4,7 @@ import {
   ChevronRight, Mail, MessageCircle, ExternalLink, Sparkles,
   Building2, Wrench, Package, CheckCircle2, Menu, X, Send, Loader2
 } from 'lucide-react';
+import { Analytics } from '@vercel/analytics/react';
 
 /* ─── Intersection Observer hook ─────────────────────────────── */
 function useInView(threshold = 0.15) {
@@ -692,6 +693,7 @@ export default function App() {
       <WhyUs />
       <Contact />
       <Footer />
+      <Analytics />
     </div>
   );
 }

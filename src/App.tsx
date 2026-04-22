@@ -484,21 +484,13 @@ function Hardware() {
             Distribuidores & Proveedores
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
-            {[
-              { name: 'Digistar', url: 'https://www.digistar.com.uy/' },
-              { name: 'Unicom', url: 'https://www.unicom.com.uy/' },
-              { name: 'CDR Medios', url: 'https://www.cdrmedios.com/' },
-              { name: 'Intcomex', url: 'https://store.intcomex.com/es-xuy/home' },
-            ].map(p => (
-              <a
-                key={p.name}
-                href={p.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-5 py-2.5 rounded-xl bg-white border border-teal-200 shadow-sm text-sm font-semibold text-teal-800 hover:border-teal-400 hover:-translate-y-0.5 transition-all inline-flex items-center gap-1.5"
+            {['Digistar', 'Unicom', 'CDR Medios', 'Intcomex'].map(name => (
+              <span
+                key={name}
+                className="px-5 py-2.5 rounded-xl bg-white border border-teal-200 shadow-sm text-sm font-semibold text-teal-800"
               >
-                {p.name} <ExternalLink size={11} className="text-teal-400" />
-              </a>
+                {name}
+              </span>
             ))}
           </div>
           <p className="text-center text-xs text-teal-500 mt-6">

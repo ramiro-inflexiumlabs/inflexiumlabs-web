@@ -2,7 +2,8 @@ import { useEffect, useRef, useState, type FormEvent } from 'react';
 import {
   ArrowRight, Code2, Layers, Zap, Globe2, Shield, BarChart3,
   ChevronRight, Mail, MessageCircle, ExternalLink, Sparkles,
-  Building2, Wrench, Package, CheckCircle2, Menu, X, Send, Loader2
+  Building2, Wrench, Package, CheckCircle2, Menu, X, Send, Loader2,
+  Tablet, Network, Cpu, Lock, ShoppingCart, HardDrive
 } from 'lucide-react';
 import { Analytics } from '@vercel/analytics/react';
 
@@ -46,6 +47,7 @@ function Nav() {
   const links = [
     { label: 'Servicios', href: '#servicios' },
     { label: 'Productos', href: '#productos' },
+    { label: 'Hardware', href: '#hardware' },
     { label: 'Por qué nosotros', href: '#nosotros' },
     { label: 'Contacto', href: '#contacto' },
   ];
@@ -412,6 +414,102 @@ function ProductCard({ name, tagline, desc, tags, gradient, shadowColor, logoSrc
   );
 }
 
+/* ─── Hardware ────────────────────────────────────────────────── */
+const hardwareItems = [
+  {
+    icon: <Tablet size={24} />,
+    color: 'blue',
+    title: 'Tablets & Kioscos',
+    desc: 'Dispositivos táctiles robustos para retail, industria y atención al público. Instalamos, configuramos e integramos con tu sistema de gestión.',
+    tags: ['Táctil', 'Retail', 'Industrial'],
+  },
+  {
+    icon: <Network size={24} />,
+    color: 'cyan',
+    title: 'Infraestructura de Redes',
+    desc: 'Cableado estructurado, switches gestionados, WiFi empresarial y monitoreo proactivo. Diseño, instalación y soporte continuo en Uruguay.',
+    tags: ['Switches', 'WiFi 6', 'Monitoreo 24/7'],
+  },
+  {
+    icon: <Cpu size={24} />,
+    color: 'violet',
+    title: 'Sensores IoT',
+    desc: 'Monitoreo en tiempo real de temperatura, humedad, movimiento y presencia. Alertas automáticas e integración con tu ERP u Odoo.',
+    tags: ['Temperatura', 'MQTT', 'Alertas'],
+  },
+  {
+    icon: <Lock size={24} />,
+    color: 'blue',
+    title: 'Control de Acceso',
+    desc: 'Biometría, RFID y control de puertas con registro en la nube. Compatible con Odoo HR para asistencia y seguridad perimetral integrada.',
+    tags: ['Biometría', 'RFID', 'Odoo HR'],
+  },
+  {
+    icon: <ShoppingCart size={24} />,
+    color: 'cyan',
+    title: 'Punto de Venta',
+    desc: 'Terminales POS, impresoras de tickets, lectores de código y cajones de dinero. Compatibles con Odoo POS y software de gestión comercial.',
+    tags: ['POS', 'Odoo POS', 'Código de barras'],
+  },
+];
+
+function Hardware() {
+  const { ref, inView } = useInView();
+  return (
+    <section id="hardware" className="py-32 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-teal-50/30 to-transparent pointer-events-none" />
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div ref={ref} className={`mb-16 transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-50 border border-teal-100 text-xs font-semibold text-teal-700 mb-6">
+            <HardDrive size={11} /> Hardware Empresarial
+          </div>
+          <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">
+            Hardware empresarial,<br />
+            <span className="gradient-text">conectado a tu operación</span>
+          </h2>
+          <p className="text-gray-500 max-w-xl text-lg">
+            Equipamos tu empresa con hardware comercial de calidad: desde el kiosco en recepción hasta el sensor en el depósito. Somos distribuidores de las principales marcas del mercado uruguayo.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {hardwareItems.map((h, i) => (
+            <ServiceCard key={h.title} s={h} delay={i * 80} />
+          ))}
+        </div>
+
+        {/* Suppliers strip */}
+        <div className="mt-16 rounded-3xl bg-gradient-to-br from-teal-50 to-cyan-50 border border-teal-100 p-8 md:p-10">
+          <p className="text-center text-xs font-semibold text-teal-600 uppercase tracking-widest mb-8">
+            Distribuidores & Proveedores
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            {[
+              { name: 'Digistar', url: 'https://www.digistar.com.uy/' },
+              { name: 'Unicom', url: 'https://www.unicom.com.uy/' },
+              { name: 'CDR Medios', url: 'https://www.cdrmedios.com/' },
+              { name: 'Intcomex', url: 'https://store.intcomex.com/es-xuy/home' },
+            ].map(p => (
+              <a
+                key={p.name}
+                href={p.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-5 py-2.5 rounded-xl bg-white border border-teal-200 shadow-sm text-sm font-semibold text-teal-800 hover:border-teal-400 hover:-translate-y-0.5 transition-all inline-flex items-center gap-1.5"
+              >
+                {p.name} <ExternalLink size={11} className="text-teal-400" />
+              </a>
+            ))}
+          </div>
+          <p className="text-center text-xs text-teal-500 mt-6">
+            Cotizamos, entregamos e instalamos. Un solo interlocutor para todo el hardware de tu empresa.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ─── Why us ──────────────────────────────────────────────────── */
 const reasons = [
   { icon: <Sparkles size={20} />, title: 'Partner Oficial Odoo', desc: 'Certificación directa de Odoo. Acceso a releases anticipadas, soporte nivel 2 y recursos exclusivos. No eres cliente, eres aliado.' },
@@ -673,6 +771,7 @@ function Footer() {
         <div className="flex items-center gap-8 text-xs text-gray-400">
           <a href="#servicios" className="hover:text-gray-700 transition-colors">Servicios</a>
           <a href="#productos" className="hover:text-gray-700 transition-colors">Productos</a>
+          <a href="#hardware" className="hover:text-gray-700 transition-colors">Hardware</a>
           <a href="#contacto" className="hover:text-gray-700 transition-colors">Contacto</a>
           <a href="mailto:ventas@inflexiumlabs.com" className="hover:text-gray-700 transition-colors">ventas@inflexiumlabs.com</a>
         </div>
@@ -690,6 +789,7 @@ export default function App() {
       <TrustStrip />
       <Services />
       <Products />
+      <Hardware />
       <WhyUs />
       <Contact />
       <Footer />

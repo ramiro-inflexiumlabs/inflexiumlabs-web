@@ -478,33 +478,6 @@ function Hardware() {
           ))}
         </div>
 
-        {/* Suppliers strip */}
-        <div className="mt-16 rounded-3xl bg-gradient-to-br from-teal-50 to-cyan-50 border border-teal-100 p-8 md:p-10">
-          <p className="text-center text-xs font-semibold text-teal-600 uppercase tracking-widest mb-8">
-            Distribuidores & Proveedores
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            {[
-              { name: 'Digistar', url: 'https://www.digistar.com.uy/' },
-              { name: 'Unicom', url: 'https://www.unicom.com.uy/' },
-              { name: 'CDR Medios', url: 'https://www.cdrmedios.com/' },
-              { name: 'Intcomex', url: 'https://store.intcomex.com/es-xuy/home' },
-            ].map(p => (
-              <a
-                key={p.name}
-                href={p.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-5 py-2.5 rounded-xl bg-white border border-teal-200 shadow-sm text-sm font-semibold text-teal-800 hover:border-teal-400 hover:-translate-y-0.5 transition-all inline-flex items-center gap-1.5"
-              >
-                {p.name} <ExternalLink size={11} className="text-teal-400" />
-              </a>
-            ))}
-          </div>
-          <p className="text-center text-xs text-teal-500 mt-6">
-            Cotizamos, entregamos e instalamos. Un solo interlocutor para todo el hardware de tu empresa.
-          </p>
-        </div>
       </div>
     </section>
   );

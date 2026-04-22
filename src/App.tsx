@@ -108,13 +108,13 @@ function Hero() {
 
         {/* Headline */}
         <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[0.95] tracking-tight mb-8 animate-fade-up opacity-0-init animate-delay-100" style={{ animationFillMode: 'forwards' }}>
-          <span className="text-gray-900">Tecnología que</span>
+          <span className="text-gray-900">Odoo sin fracasar.</span>
           <br />
-          <span className="gradient-text">transforma empresas</span>
+          <span className="gradient-text">Implementamos en 8 semanas, no en 12 meses</span>
         </h1>
 
         <p className="text-lg md:text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed mb-12 animate-fade-up opacity-0-init animate-delay-200" style={{ animationFillMode: 'forwards' }}>
-          Implementamos Odoo, desarrollamos software a medida y construimos productos digitales para que tu operación escale sin fricciones.
+          80% de proyectos Odoo fallan por mala implementación o adopción. Nosotros somos el equipo que se queda. Migramos tus datos, capacitamos tu gente y sostenemos el sistema mientras crece.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up opacity-0-init animate-delay-300" style={{ animationFillMode: 'forwards' }}>
@@ -122,7 +122,7 @@ function Hero() {
             href="#contacto"
             className="group inline-flex items-center gap-3 px-7 py-4 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-semibold text-sm transition-all glow-violet hover:scale-105"
           >
-            Solicitar diagnóstico gratuito
+            Obtener diagnóstico & hoja de ruta
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </a>
           <a
@@ -190,43 +190,43 @@ const services = [
     icon: <Layers size={24} />,
     color: 'violet',
     title: 'Implementación Odoo',
-    desc: 'Configuramos y personalizamos Odoo a medida de tu operación. Migraciones, integraciones y capacitación incluidas.',
-    tags: ['Odoo 17/18', 'Multiempresa', 'Migración'],
+    desc: '80% de proyectos Odoo fracasan por mala migración o rechazo de usuarios. Nosotros reducimos ese riesgo: configuramos, migramos datos íntegros y capacitamos tu equipo.',
+    tags: ['Odoo 17/18', 'Migración íntegra', 'Sin rechazo'],
   },
   {
     icon: <Code2 size={24} />,
     color: 'blue',
     title: 'Desarrollo a medida',
-    desc: 'Módulos custom, integraciones con APIs externas y soluciones específicas que Odoo base no cubre.',
-    tags: ['Python', 'React', 'REST API'],
+    desc: 'Odoo base no cubre todo. Construimos módulos custom y APIs que transforman procesos específicos de tu empresa en semanas.',
+    tags: ['Python', 'React', 'Odoo Modules'],
   },
   {
     icon: <Building2 size={24} />,
     color: 'cyan',
     title: 'ERP para construcción',
-    desc: 'PreObra: sistema completo de presupuestación, control de obra y certificación sobre Odoo.',
-    tags: ['PreObra', 'Obras', 'Uruguay'],
+    desc: 'Las hojas de cálculo fallan en presupuestación y control de obra. PreObra: 6 módulos integrados en Odoo para constructoras que necesitan certeza en avance y margen.',
+    tags: ['PreObra', 'Certificación', 'Valor ganado'],
   },
   {
     icon: <BarChart3 size={24} />,
     color: 'violet',
     title: 'Business Intelligence',
-    desc: 'Dashboards, KPIs y reportes personalizados conectados directamente a tu instancia Odoo.',
-    tags: ['Dashboards', 'KPIs', 'Tiempo real'],
+    desc: 'Sin visibilidad en tiempo real, no hay decisiones inteligentes. Conectamos Odoo a dashboards que muestran KPIs antes de que haya crisis.',
+    tags: ['Dashboards real-time', 'Predictivos', 'Mobile'],
   },
   {
     icon: <Shield size={24} />,
     color: 'blue',
     title: 'Soporte & mantenimiento',
-    desc: 'SLA garantizado, actualizaciones y soporte técnico en español para equipos en Uruguay y México.',
-    tags: ['SLA', 'Soporte', 'Actualizaciones'],
+    desc: 'El problema: Odoo se rompe después del go-live. Nosotros somos tu CTO virtual en SLA: respuestas <4h, parches automáticos y evolución del sistema.',
+    tags: ['SLA 4h', '24/7 disponible', 'Prevención'],
   },
   {
     icon: <Globe2 size={24} />,
     color: 'cyan',
     title: 'Cloud & infraestructura',
-    desc: 'Hosting, backup automático y gestión de servidores para tu instancia Odoo con uptime garantizado.',
-    tags: ['Cloud', 'Backup', '99.9% uptime'],
+    desc: 'Servidor caído = empresa caída. Gestionamos hosting en Odoo.sh, backups automáticos y monitoreo 24/7 para que nunca pierdas datos ni uptime.',
+    tags: ['Odoo.sh', '99.99% uptime', 'Backups diarios'],
   },
 ];
 
@@ -414,10 +414,10 @@ function ProductCard({ name, tagline, desc, tags, gradient, shadowColor, logoSrc
 
 /* ─── Why us ──────────────────────────────────────────────────── */
 const reasons = [
-  { icon: <Sparkles size={20} />, title: 'Partner Oficial Odoo', desc: 'Certificación directa de Odoo. Acceso a soporte de nivel 2, releases anticipadas y recursos exclusivos.' },
-  { icon: <Globe2 size={20} />, title: 'Uruguay y México', desc: 'Equipos locales que conocen la regulación, los procesos y las particularidades de cada mercado.' },
-  { icon: <Zap size={20} />, title: 'Implementaciones rápidas', desc: 'Metodología propia que lleva tu empresa de 0 a Odoo en producción en semanas, no en meses.' },
-  { icon: <Code2 size={20} />, title: 'Desarrollo propio', desc: 'No somos solo revendedores. Construimos módulos custom, integraciones y productos sobre Odoo.' },
+  { icon: <Sparkles size={20} />, title: 'Partner Oficial Odoo', desc: 'Certificación directa de Odoo. Acceso a releases anticipadas, soporte nivel 2 y recursos exclusivos. No eres cliente, eres aliado.' },
+  { icon: <Globe2 size={20} />, title: 'Equipo local, conocimiento real', desc: 'Operamos en Uruguay y México. Entendemos SAT, regulación local y los procesos que Odoo genérico no cubre.' },
+  { icon: <Zap size={20} />, title: 'Go-live en 8 semanas', desc: 'Metodología propia que lleva tu empresa de diagrama a producción sin drama. Mientras otros tardan 4 meses, nosotros ya estamos soportándote.' },
+  { icon: <Code2 size={20} />, title: 'Desarrollamos, no solo vendemos', desc: 'No somos solo revendedores. Construimos módulos custom, integraciones y productos (PreObra, Timekia) que solo nosotros ofrecemos.' },
 ];
 
 function WhyUs() {
@@ -431,14 +431,14 @@ function WhyUs() {
               <Shield size={11} /> Por qué nosotros
             </div>
             <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6">
-              No solo implementamos.<br />
-              <span className="gradient-text">Nos quedamos.</span>
+              Mientras otros desaparecen,<br />
+              <span className="gradient-text">nosotros nos quedamos.</span>
             </h2>
             <p className="text-gray-500 text-lg leading-relaxed">
-              Entendemos que adoptar un ERP es una decisión crítica. Por eso no desaparecemos después del go-live — somos el equipo técnico externo de tu empresa.
+              El 80% de implementadores entrega y desaparece. Nosotros somos tu CTO virtual. Sostenemos el sistema, capacitamos, escalamos y optimizamos junto a ti mes tras mes. No es un proyecto — es una alianza.
             </p>
             <a href="#contacto" className="inline-flex items-center gap-2 mt-8 px-6 py-3 rounded-xl bg-white border border-gray-200 hover:border-violet-300 text-sm font-semibold text-gray-800 hover:text-violet-700 transition-all shadow-sm">
-              Hablar con un experto <ArrowRight size={14} />
+              Hablar con un experto (30 min) <ArrowRight size={14} />
             </a>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -529,11 +529,11 @@ function Contact() {
               <Mail size={11} /> Contacto
             </div>
             <h2 className="text-4xl md:text-6xl font-black text-gray-900 mb-4">
-              ¿Listo para dar el<br />
-              <span className="gradient-text">siguiente paso?</span>
+              Obtén tu diagnóstico<br />
+              <span className="gradient-text">en 24 horas</span>
             </h2>
             <p className="text-gray-500 text-lg max-w-xl mx-auto">
-              Contanos sobre tu empresa y te respondemos en menos de 24 horas.
+              Cuéntanos sobre tu empresa. Te respondemos con hoja de ruta, estimado y opciones.
             </p>
           </div>
 
@@ -590,10 +590,10 @@ function Contact() {
                     </div>
                   </div>
                   <div>
-                    <label className="block text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wider">¿En qué podemos ayudarte?</label>
+                    <label className="block text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wider">Tu situación actual</label>
                     <textarea
                       name="message" value={form.message} onChange={onChange} rows={4}
-                      placeholder="Contanos sobre tu empresa, qué procesos querés mejorar..."
+                      placeholder="Tu sector, procesos que querés mejorar, cuántos usuarios..."
                       className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-500/10 transition-colors resize-none"
                     />
                   </div>

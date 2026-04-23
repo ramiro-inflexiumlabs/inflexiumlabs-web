@@ -755,6 +755,16 @@ function Footer() {
 
 /* ─── App ─────────────────────────────────────────────────────── */
 export default function App() {
+  useEffect(() => {
+    const tweakPanels = Array.from(document.querySelectorAll('div[style*="position: fixed"][style*="bottom: 20px"][style*="right: 20px"]'));
+    tweakPanels.forEach((panel) => {
+      const panelText = panel.textContent ?? '';
+      if (panelText.includes('Tweaks') && panelText.includes('Timekia landing')) {
+        panel.remove();
+      }
+    });
+  }, []);
+
   return (
     <div className="noise">
       <Nav />

@@ -91,57 +91,141 @@ function Nav() {
 
 /* ─── Hero ────────────────────────────────────────────────────── */
 function Hero() {
+  const heroSlides = [
+    {
+      badge: 'Partner Oficial de Odoo · Uruguay & México',
+      titleLine1: 'Odoo sin fracasar.',
+      titleGradient: 'Implementamos en 8 semanas, no en 12 meses',
+      description:
+        '80% de proyectos Odoo fallan por mala implementación o adopción. Nosotros somos el equipo que se queda. Migramos tus datos, capacitamos tu gente y sostenemos el sistema mientras crece.',
+      primaryCta: 'Obtener diagnóstico & hoja de ruta',
+      secondaryCta: 'Ver productos',
+      primaryHref: '#contacto',
+      secondaryHref: '#productos',
+    },
+    {
+      badge: 'Consultoría Estratégica + Implementación',
+      titleLine1: 'No vendemos software.',
+      titleGradient: 'Diseñamos sistemas que ordenan tu operación',
+      description:
+        'Antes de implementar, entendemos tus procesos, dolores y prioridades. Convertimos el diagnóstico en una hoja de ruta clara para que Odoo acompañe la realidad de tu empresa.',
+      primaryCta: 'Agendar diagnóstico',
+      secondaryCta: 'Ver servicios',
+      primaryHref: '#contacto',
+      secondaryHref: '#servicios',
+    },
+    {
+      badge: 'Capacitación por Procesos',
+      titleLine1: 'Tu equipo adopta Odoo.',
+      titleGradient: 'No alcanza con instalarlo, hay que usarlo bien',
+      description:
+        'Capacitamos a usuarios clave y equipos operativos por proceso: ventas, compras, inventario, RRHH, facturación, reportes y gestión diaria.',
+      primaryCta: 'Consultar capacitación',
+      secondaryCta: 'Ver beneficios',
+      primaryHref: '#contacto',
+      secondaryHref: '/beneficios',
+    },
+    {
+      badge: 'Soluciones Verticales OdooMás',
+      titleLine1: 'Odoo para tu industria.',
+      titleGradient: 'Construcción, RRHH, logística y operación real',
+      description:
+        'Creamos soluciones verticales sobre Odoo como PreObra y Timekia para resolver problemas concretos: presupuestación, asistencia, certificaciones, reportes y control operativo.',
+      primaryCta: 'Ver soluciones',
+      secondaryCta: 'Conocer PreObra',
+      primaryHref: '#productos',
+      secondaryHref: '/preobra',
+    },
+    {
+      badge: 'Hardware + Software + Integración',
+      titleLine1: 'Conectamos el mundo físico.',
+      titleGradient: 'Biometría, tablets, POS, sensores e IoT con Odoo',
+      description:
+        'Integramos hardware empresarial con tus procesos: relojes biométricos, kioscos, tablets, POS, sensores y dispositivos conectados para que la operación quede registrada en tiempo real.',
+      primaryCta: 'Ver hardware',
+      secondaryCta: 'Hablar con un experto',
+      primaryHref: '/hardware',
+      secondaryHref: '#contacto',
+    },
+  ];
+
+  const [activeSlide, setActiveSlide] = useState(0);
+  const currentSlide = heroSlides[activeSlide];
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setActiveSlide((current) => (current + 1) % heroSlides.length);
+    }, 5000);
+    return () => window.clearInterval(interval);
+  }, [heroSlides.length]);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
-      {/* Background orbs */}
       <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full bg-violet-400/20 blur-[130px] animate-glow-pulse pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] rounded-full bg-blue-400/20 blur-[120px] animate-glow-pulse animate-delay-500 pointer-events-none" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-purple-300/10 blur-[160px] pointer-events-none" />
 
-      {/* Grid pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(124,58,237,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(124,58,237,0.05)_1px,transparent_1px)] bg-[size:72px_72px] pointer-events-none" />
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-violet-50 border border-violet-200 text-xs font-semibold text-violet-700 mb-10 animate-fade-up opacity-0-init" style={{ animationFillMode: 'forwards' }}>
+        <div
+          key={`badge-${activeSlide}`}
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-violet-50 border border-violet-200 text-xs font-semibold text-violet-700 mb-10 animate-fade-up"
+        >
           <Sparkles size={12} className="text-violet-500" />
-          Partner Oficial de Odoo · Uruguay & México
+          {currentSlide.badge}
         </div>
 
-        {/* Headline */}
-        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[0.95] tracking-tight mb-8 animate-fade-up opacity-0-init animate-delay-100" style={{ animationFillMode: 'forwards' }}>
-          <span className="text-gray-900">Odoo sin fracasar.</span>
-          <br />
-          <span className="gradient-text">Implementamos en 8 semanas, no en 12 meses</span>
-        </h1>
+        <div key={`content-${activeSlide}`} className="transition-all duration-700 ease-out animate-fade-up">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[0.95] tracking-tight mb-8">
+            <span className="text-gray-900">{currentSlide.titleLine1}</span>
+            <br />
+            <span className="gradient-text">{currentSlide.titleGradient}</span>
+          </h1>
 
-        <p className="text-lg md:text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed mb-12 animate-fade-up opacity-0-init animate-delay-200" style={{ animationFillMode: 'forwards' }}>
-          80% de proyectos Odoo fallan por mala implementación o adopción. Nosotros somos el equipo que se queda. Migramos tus datos, capacitamos tu gente y sostenemos el sistema mientras crece.
-        </p>
+          <p className="text-lg md:text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed mb-12">
+            {currentSlide.description}
+          </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up opacity-0-init animate-delay-300" style={{ animationFillMode: 'forwards' }}>
-          <a
-            href="#contacto"
-            className="group inline-flex items-center gap-3 px-7 py-4 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-semibold text-sm transition-all glow-violet hover:scale-105"
-          >
-            Obtener diagnóstico & hoja de ruta
-            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-          </a>
-          <a
-            href="#productos"
-            className="inline-flex items-center gap-2 px-7 py-4 rounded-xl bg-white border border-gray-200 text-gray-700 hover:border-violet-300 hover:text-violet-700 text-sm font-semibold transition-all hover:scale-105 shadow-sm"
-          >
-            Ver productos <ChevronRight size={16} />
-          </a>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a
+              href={currentSlide.primaryHref}
+              className="group inline-flex items-center gap-3 px-7 py-4 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-semibold text-sm transition-all glow-violet hover:scale-105"
+            >
+              {currentSlide.primaryCta}
+              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            </a>
+            <a
+              href={currentSlide.secondaryHref}
+              className="inline-flex items-center gap-2 px-7 py-4 rounded-xl bg-white border border-gray-200 text-gray-700 hover:border-violet-300 hover:text-violet-700 text-sm font-semibold transition-all hover:scale-105 shadow-sm"
+            >
+              {currentSlide.secondaryCta} <ChevronRight size={16} />
+            </a>
+          </div>
         </div>
 
-        {/* Floating stats */}
-        <div className="mt-24 grid grid-cols-3 gap-4 max-w-2xl mx-auto animate-fade-up opacity-0-init animate-delay-500" style={{ animationFillMode: 'forwards' }}>
+        <div className="flex items-center justify-center gap-2 mt-8">
+          {heroSlides.map((slide, index) => (
+            <button
+              key={slide.titleLine1}
+              type="button"
+              aria-label={`Ver propuesta ${index + 1}`}
+              onClick={() => setActiveSlide(index)}
+              className={`h-2.5 rounded-full transition-all duration-300 ${
+                activeSlide === index
+                  ? 'w-8 bg-violet-600'
+                  : 'w-2.5 bg-gray-300 hover:bg-violet-300'
+              }`}
+            />
+          ))}
+        </div>
+
+        <div className="mt-20 grid grid-cols-3 gap-4 max-w-2xl mx-auto animate-fade-up">
           {[
             { value: '80+', label: 'módulos Odoo' },
             { value: '2', label: 'países activos' },
             { value: '100%', label: 'soporte en español' },
-          ].map(s => (
+          ].map((s) => (
             <div key={s.label} className="bg-white border border-gray-200 rounded-2xl py-5 px-4 shadow-sm">
               <div className="text-2xl font-black gradient-text">{s.value}</div>
               <div className="text-xs text-gray-400 mt-1 font-medium">{s.label}</div>
@@ -150,7 +234,6 @@ function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-float text-gray-300">
         <div className="w-px h-10 bg-gradient-to-b from-transparent to-gray-300" />
         <span className="text-xs tracking-widest uppercase">scroll</span>

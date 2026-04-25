@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/hardware",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/hardware/",
+      "destination": "/index.html"
+    }
+  ]
+}

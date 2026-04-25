@@ -3,7 +3,8 @@ import {
   ArrowRight, Code2, Layers, Zap, Globe2, Shield, BarChart3,
   ChevronRight, Mail, MessageCircle, ExternalLink, Sparkles,
   Building2, Wrench, Package, CheckCircle2, Menu, X, Send, Loader2,
-  Tablet, Network, Cpu, Lock, ShoppingCart, HardDrive
+  Tablet, Network, Cpu, Lock, ShoppingCart, HardDrive, MonitorSmartphone,
+  Wifi, Printer, QrCode, ShieldCheck, BatteryCharging, ScanLine, Store, CarFront
 } from 'lucide-react';
 import { Analytics } from '@vercel/analytics/react';
 
@@ -45,11 +46,11 @@ function Nav() {
   }, []);
 
   const links = [
-    { label: 'Servicios', href: '#servicios' },
-    { label: 'Productos', href: '#productos' },
-    { label: 'Hardware', href: '#hardware' },
-    { label: 'Por qué nosotros', href: '#nosotros' },
-    { label: 'Contacto', href: '#contacto' },
+    { label: 'Servicios', href: '/#servicios' },
+    { label: 'Productos', href: '/#productos' },
+    { label: 'Hardware', href: '/hardware' },
+    { label: 'Por qué nosotros', href: '/#nosotros' },
+    { label: 'Contacto', href: '/#contacto' },
   ];
 
   return (
@@ -64,7 +65,7 @@ function Nav() {
           ))}
         </nav>
         <a
-          href="#contacto"
+          href="/#contacto"
           className="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold bg-violet-600 hover:bg-violet-500 text-white transition-all hover:shadow-lg hover:shadow-violet-500/25"
         >
           Hablemos <ArrowRight size={14} />
@@ -80,7 +81,7 @@ function Nav() {
               {l.label}
             </a>
           ))}
-          <a href="#contacto" onClick={() => setMenuOpen(false)} className="block w-full text-center px-4 py-3 rounded-lg bg-violet-600 text-white text-sm font-semibold">
+          <a href="/#contacto" onClick={() => setMenuOpen(false)} className="block w-full text-center px-4 py-3 rounded-lg bg-violet-600 text-white text-sm font-semibold">
             Hablemos
           </a>
         </div>
@@ -815,6 +816,141 @@ function Contact() {
   );
 }
 
+/* ─── Dedicated hardware page ────────────────────────────────── */
+const hardwareHighlights = [
+  {
+    icon: <MonitorSmartphone size={18} />,
+    title: 'Pantalla táctil 24”–27”',
+    description: 'Panel LCD/LED ideal para atención al público, autoservicio y operaciones de alto tráfico.',
+  },
+  {
+    icon: <Cpu size={18} />,
+    title: 'Procesador Intel Core i3',
+    description: 'Rendimiento estable para kioscos de venta, menús digitales y flujo de pagos continuo.',
+  },
+  {
+    icon: <HardDrive size={18} />,
+    title: 'Memoria 12 GB RAM',
+    description: 'Respuesta fluida para apps de negocio, POS y navegación multitarea.',
+  },
+  {
+    icon: <Wifi size={18} />,
+    title: 'Ethernet + WiFi',
+    description: 'Conectividad 10/100/1000 Mbps para operación en local, sucursal o franquicia.',
+  },
+  {
+    icon: <Printer size={18} />,
+    title: 'Impresora térmica 80 mm',
+    description: 'Corte automático e integración con software de punto de venta.',
+  },
+  {
+    icon: <QrCode size={18} />,
+    title: 'Lector QR + NFC',
+    description: 'Cobros y validación rápida con QR, tarjetas y experiencias sin contacto.',
+  },
+];
+
+const hardwareVerticals = [
+  {
+    icon: <CarFront size={18} />,
+    title: 'Tablet robusta 8” para construcción vial',
+    description: 'IP68/IP69K, MIL-STD-810H, procesador Helio G81 Ultra y lectura NFC para campo.',
+    bullets: ['Doble SIM/TF + audio', 'Resiste polvo, agua y vibración', 'Más manejable en obra'],
+  },
+  {
+    icon: <Store size={18} />,
+    title: 'Tecnología integral para tu negocio',
+    description: 'Movilidad, punto de venta, kioscos, manejo de dinero y cartelería digital en un solo proveedor.',
+    bullets: ['Colectores, smartphones y tablets robustas', 'POS, monitores táctiles y lectores', 'Video wall, touch y doble cara'],
+  },
+  {
+    icon: <ShieldCheck size={18} />,
+    title: 'Equipos para operación crítica',
+    description: 'Diseñamos soluciones resistentes para retail, logística, industria y sector público.',
+    bullets: ['Instalación y soporte local', 'Integración con Odoo y sistemas existentes', 'Capacitación operativa'],
+  },
+];
+
+function HardwarePage() {
+  return (
+    <main className="pt-24 pb-20">
+      <section className="max-w-7xl mx-auto px-6">
+        <div className="rounded-3xl border border-violet-200 bg-gradient-to-br from-violet-50 via-white to-blue-50 p-10 md:p-14 mb-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-violet-200 text-xs font-semibold text-violet-700 mb-6">
+            <HardDrive size={12} /> InflexiumLabs Hardware
+          </div>
+          <h1 className="text-4xl md:text-6xl font-black text-gray-900 leading-tight mb-6">
+            Hardware empresarial completo<br />
+            <span className="gradient-text">para operaciones reales</span>
+          </h1>
+          <p className="text-lg text-gray-600 max-w-3xl leading-relaxed mb-8">
+            En <strong>inflexiumlabs.com/hardware</strong> centralizamos nuestro catálogo de dispositivos:
+            kioscos digitales, tablets robustas, punto de venta, movilidad, cartelería y manejo de dinero.
+            Todo con implementación e integración a tus procesos.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <a href="/#contacto" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-violet-600 hover:bg-violet-500 text-white text-sm font-semibold transition-all">
+              Solicitar asesoría <ArrowRight size={14} />
+            </a>
+            <a href="mailto:ventas@inflexiumlabs.com" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-gray-200 text-gray-700 hover:border-violet-300 hover:text-violet-700 text-sm font-semibold transition-all">
+              ventas@inflexiumlabs.com
+            </a>
+          </div>
+        </div>
+
+        <div className="rounded-3xl border border-gray-200 bg-white p-6 md:p-8 mb-10 shadow-sm">
+          <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-2">Digital Kiosk</h2>
+          <p className="text-sm text-gray-500 mb-8">Especificaciones destacadas del material proporcionado.</p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {hardwareHighlights.map((item) => (
+              <div key={item.title} className="rounded-2xl border border-gray-200 p-5 bg-gray-50">
+                <div className="w-9 h-9 rounded-lg bg-violet-100 text-violet-700 flex items-center justify-center mb-4">
+                  {item.icon}
+                </div>
+                <h3 className="font-bold text-gray-900 mb-2">{item.title}</h3>
+                <p className="text-sm text-gray-500">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="grid lg:grid-cols-3 gap-5">
+          {hardwareVerticals.map((v) => (
+            <article key={v.title} className="rounded-3xl border border-gray-200 bg-white p-7 shadow-sm">
+              <div className="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center mb-4">
+                {v.icon}
+              </div>
+              <h3 className="text-xl font-black text-gray-900 mb-3">{v.title}</h3>
+              <p className="text-gray-500 text-sm mb-5">{v.description}</p>
+              <ul className="space-y-2">
+                {v.bullets.map((bullet) => (
+                  <li key={bullet} className="flex items-start gap-2 text-sm text-gray-700">
+                    <CheckCircle2 size={14} className="text-violet-500 mt-0.5 flex-shrink-0" />
+                    {bullet}
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+
+        <div className="rounded-3xl bg-gray-900 text-white p-8 md:p-10 mt-10">
+          <h2 className="text-2xl md:text-3xl font-black mb-4">¿Buscas una solución específica?</h2>
+          <p className="text-gray-300 max-w-2xl mb-6">
+            Armamos propuesta por rubro: retail, restaurantes, logística, obra vial, industria y sector público.
+            También integramos hardware existente para acelerar tu salida a producción.
+          </p>
+          <div className="flex flex-wrap gap-4 text-sm">
+            <span className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-white/10"><BatteryCharging size={14} /> Equipos robustos</span>
+            <span className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-white/10"><ScanLine size={14} /> Captura y trazabilidad</span>
+            <span className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-white/10"><Network size={14} /> Integración operacional</span>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}
+
 /* ─── Footer ──────────────────────────────────────────────────── */
 function Footer() {
   return (
@@ -825,10 +961,10 @@ function Footer() {
           <p className="text-gray-400 text-xs mt-2">Transformando empresas con tecnología que funciona.</p>
         </div>
         <div className="flex items-center gap-8 text-xs text-gray-400">
-          <a href="#servicios" className="hover:text-gray-700 transition-colors">Servicios</a>
-          <a href="#productos" className="hover:text-gray-700 transition-colors">Productos</a>
-          <a href="#hardware" className="hover:text-gray-700 transition-colors">Hardware</a>
-          <a href="#contacto" className="hover:text-gray-700 transition-colors">Contacto</a>
+          <a href="/#servicios" className="hover:text-gray-700 transition-colors">Servicios</a>
+          <a href="/#productos" className="hover:text-gray-700 transition-colors">Productos</a>
+          <a href="/hardware" className="hover:text-gray-700 transition-colors">Hardware</a>
+          <a href="/#contacto" className="hover:text-gray-700 transition-colors">Contacto</a>
           <a href="mailto:ventas@inflexiumlabs.com" className="hover:text-gray-700 transition-colors">ventas@inflexiumlabs.com</a>
         </div>
       </div>
@@ -838,6 +974,8 @@ function Footer() {
 
 /* ─── App ─────────────────────────────────────────────────────── */
 export default function App() {
+  const isHardwareRoute = window.location.pathname === '/hardware';
+
   useEffect(() => {
     const tweakPanels = Array.from(document.querySelectorAll('div[style*="position: fixed"][style*="bottom: 20px"][style*="right: 20px"]'));
     tweakPanels.forEach((panel) => {
@@ -851,13 +989,19 @@ export default function App() {
   return (
     <div className="noise">
       <Nav />
-      <Hero />
-      <TrustStrip />
-      <Services />
-      <Products />
-      <Hardware />
-      <WhyUs />
-      <Contact />
+      {isHardwareRoute ? (
+        <HardwarePage />
+      ) : (
+        <>
+          <Hero />
+          <TrustStrip />
+          <Services />
+          <Products />
+          <Hardware />
+          <WhyUs />
+          <Contact />
+        </>
+      )}
       <Footer />
       <Analytics />
     </div>

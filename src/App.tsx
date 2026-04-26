@@ -110,41 +110,42 @@ function Hero() {
 
         {/* Headline */}
         <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[0.95] tracking-tight mb-8 animate-fade-up opacity-0-init animate-delay-100" style={{ animationFillMode: 'forwards' }}>
-          <span className="text-gray-900">Odoo sin fracasar.</span>
+          <span className="text-gray-900">Equipamos a quienes</span>
           <br />
-          <span className="gradient-text">Implementamos en 8 semanas, no en 12 meses</span>
+          <span className="gradient-text">construyen el país.</span>
         </h1>
 
         <p className="text-lg md:text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed mb-12 animate-fade-up opacity-0-init animate-delay-200" style={{ animationFillMode: 'forwards' }}>
-          80% de proyectos Odoo fallan por mala implementación o adopción. Nosotros somos el equipo que se queda. Migramos tus datos, capacitamos tu gente y sostenemos el sistema mientras crece.
+          Y lo hacemos con una promesa: si se rompe, en 48 horas tenés un reemplazo en la obra.{' '}
+          <span className="text-gray-700 font-semibold">En cualquier punto del territorio.</span>
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up opacity-0-init animate-delay-300" style={{ animationFillMode: 'forwards' }}>
           <a
-            href="#contacto"
+            href="#hardware"
             className="group inline-flex items-center gap-3 px-7 py-4 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-semibold text-sm transition-all glow-violet hover:scale-105"
           >
-            Obtener diagnóstico & hoja de ruta
-            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            Ver cómo equipamos obras ↓
           </a>
           <a
-            href="#productos"
+            href="#contacto"
             className="inline-flex items-center gap-2 px-7 py-4 rounded-xl bg-white border border-gray-200 text-gray-700 hover:border-violet-300 hover:text-violet-700 text-sm font-semibold transition-all hover:scale-105 shadow-sm"
           >
-            Ver productos <ChevronRight size={16} />
+            Hablemos de tu proyecto <ChevronRight size={16} />
           </a>
         </div>
 
         {/* Floating stats */}
-        <div className="mt-24 grid grid-cols-3 gap-4 max-w-2xl mx-auto animate-fade-up opacity-0-init animate-delay-500" style={{ animationFillMode: 'forwards' }}>
+        <div className="mt-24 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto animate-fade-up opacity-0-init animate-delay-500" style={{ animationFillMode: 'forwards' }}>
           {[
-            { value: '80+', label: 'módulos Odoo' },
-            { value: '2', label: 'países activos' },
-            { value: '100%', label: 'soporte en español' },
+            { value: '4',    label: 'Divisiones del MTOP que confían en nosotros' },
+            { value: '+200', label: 'Equipos operando hoy en terreno' },
+            { value: '48h',  label: 'Reemplazo en obra, en todo el país' },
+            { value: '0',    label: 'Obras detenidas por falta de soporte' },
           ].map(s => (
             <div key={s.label} className="bg-white border border-gray-200 rounded-2xl py-5 px-4 shadow-sm">
               <div className="text-2xl font-black gradient-text">{s.value}</div>
-              <div className="text-xs text-gray-400 mt-1 font-medium">{s.label}</div>
+              <div className="text-xs text-gray-400 mt-1 font-medium leading-snug">{s.label}</div>
             </div>
           ))}
         </div>

@@ -965,6 +965,7 @@ function Footer() {
           <a href="/#productos" className="hover:text-gray-700 transition-colors">Productos</a>
           <a href="/hardware" className="hover:text-gray-700 transition-colors">Hardware</a>
           <a href="/#contacto" className="hover:text-gray-700 transition-colors">Contacto</a>
+          <a href="/privacy" className="hover:text-gray-700 transition-colors">Privacidad & Términos</a>
           <a href="mailto:ventas@inflexiumlabs.com" className="hover:text-gray-700 transition-colors">ventas@inflexiumlabs.com</a>
         </div>
       </div>
@@ -972,9 +973,68 @@ function Footer() {
   );
 }
 
+function PrivacyPage() {
+  return (
+    <main className="pt-28 pb-20 bg-gray-50 min-h-screen">
+      <section className="max-w-4xl mx-auto px-6">
+        <h1 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">Política de Privacidad y Términos del Servicio</h1>
+        <p className="text-sm text-gray-500 mb-10">Última actualización: 4 de mayo de 2026</p>
+
+        <div className="space-y-8 text-gray-700 leading-relaxed">
+          <section className="bg-white border border-gray-200 rounded-2xl p-6 md:p-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-3">1. Información que recopilamos</h2>
+            <p>
+              En InflexiumLabs recopilamos únicamente la información necesaria para brindar nuestros servicios de consultoría,
+              implementación y soporte tecnológico. Esto puede incluir datos de contacto, datos comerciales y datos técnicos
+              relacionados con integraciones de software/hardware.
+            </p>
+          </section>
+
+          <section className="bg-white border border-gray-200 rounded-2xl p-6 md:p-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-3">2. Uso de la información</h2>
+            <p>
+              Utilizamos la información para responder consultas, gestionar propuestas comerciales, ejecutar proyectos,
+              proporcionar soporte y mejorar la calidad del servicio. No vendemos información personal a terceros.
+            </p>
+          </section>
+
+          <section className="bg-white border border-gray-200 rounded-2xl p-6 md:p-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-3">3. Seguridad y retención</h2>
+            <p>
+              Aplicamos medidas razonables de seguridad técnicas y organizativas para proteger la información.
+              Conservamos los datos durante el tiempo necesario para cumplir obligaciones contractuales, legales o de soporte.
+            </p>
+          </section>
+
+          <section className="bg-white border border-gray-200 rounded-2xl p-6 md:p-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-3">4. Términos del servicio</h2>
+            <p>
+              Los servicios de InflexiumLabs se prestan bajo acuerdos comerciales específicos definidos con cada cliente,
+              incluyendo alcance, plazos, entregables y responsabilidades. El uso de este sitio implica la aceptación de
+              estos términos generales y de la presente política.
+            </p>
+          </section>
+
+          <section className="bg-white border border-gray-200 rounded-2xl p-6 md:p-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-3">5. Contacto</h2>
+            <p>
+              Si tienes dudas sobre esta política o sobre nuestros términos de servicio, puedes escribirnos a{' '}
+              <a className="text-violet-700 hover:text-violet-600 font-semibold" href="mailto:ventas@inflexiumlabs.com">
+                ventas@inflexiumlabs.com
+              </a>
+              .
+            </p>
+          </section>
+        </div>
+      </section>
+    </main>
+  );
+}
+
 /* ─── App ─────────────────────────────────────────────────────── */
 export default function App() {
   const isHardwareRoute = window.location.pathname === '/hardware';
+  const isPrivacyRoute = window.location.pathname === '/privacy';
 
   useEffect(() => {
     const tweakPanels = Array.from(document.querySelectorAll('div[style*="position: fixed"][style*="bottom: 20px"][style*="right: 20px"]'));
@@ -991,6 +1051,8 @@ export default function App() {
       <Nav />
       {isHardwareRoute ? (
         <HardwarePage />
+      ) : isPrivacyRoute ? (
+        <PrivacyPage />
       ) : (
         <>
           <Hero />
